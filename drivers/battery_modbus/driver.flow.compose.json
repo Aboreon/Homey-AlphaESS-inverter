@@ -1,0 +1,220 @@
+{
+  "triggers": [
+    {
+      "id": "dispatch_enabled_changed",
+      "title": {
+        "en": "Dispatch mode enabled changed",
+        "nl": "Dispatchmodus ingeschakeld gewijzigd"
+      },
+      "tokens": [
+        {
+          "name": "dispatch_enabled",
+          "type": "boolean",
+          "title": { "en": "Enabled" }
+        }
+      ]
+    },
+    {
+      "id": "dispatch_mode_changed",
+      "title": {
+        "en": "Dispatch mode changed",
+        "nl": "Dispatchmodus gewijzigd"
+      },
+      "tokens": [
+        {
+          "name": "dispatch_mode",
+          "type": "string",
+          "title": { "en": "Mode" }
+        }
+      ]
+    },
+    {
+      "id": "dispatch_soc_changed",
+      "title": {
+        "en": "Dispatch target SOC changed",
+        "nl": "Dispatch-doel-SOC gewijzigd"
+      },
+      "tokens": [
+        {
+          "name": "dispatch_soc",
+          "type": "number",
+          "title": { "en": "SOC" }
+        }
+      ]
+    },
+    {
+      "id": "dispatch_active_power_changed",
+      "title": {
+        "en": "Dispatch active power changed",
+        "nl": "Dispatch actief vermogen gewijzigd"
+      },
+      "tokens": [
+        {
+          "name": "dispatch_active_power",
+          "type": "number",
+          "title": { "en": "Power (W)" }
+        }
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "dispatch_enabled_is",
+      "title": {
+        "en": "Dispatch !{{is|isn't}} enabled",
+        "nl": "Dispatch !{{is|is niet}} ingeschakeld"
+      },
+      "titleFormatted": {
+        "en": "Dispatch !{{is|isn't}} enabled",
+        "nl": "Dispatch !{{is|is niet}} ingeschakeld"
+      }
+    },
+    {
+      "id": "dispatch_mode_is",
+      "title": {
+        "en": "Dispatch mode !{{is|isn't}} [[mode]]",
+        "nl": "Dispatchmodus !{{is|is niet}} [[mode]]"
+      },
+      "titleFormatted": {
+        "en": "Dispatch mode !{{is|isn't}} [[mode]]",
+        "nl": "Dispatchmodus !{{is|is niet}} [[mode]]"
+      },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "mode",
+          "values": [
+            { "id": "1", "label": { "en": "Battery only charges from PV" } },
+            { "id": "2", "label": { "en": "SOC control" } },
+            { "id": "3", "label": { "en": "Load following" } },
+            { "id": "4", "label": { "en": "Maximise output" } },
+            { "id": "5", "label": { "en": "Normal mode" } },
+            { "id": "6", "label": { "en": "Optimise consumption" } },
+            { "id": "7", "label": { "en": "Maximise consumption" } },
+            { "id": "8", "label": { "en": "Eco mode" } },
+            { "id": "9", "label": { "en": "FCAS mode" } },
+            { "id": "10", "label": { "en": "PV power setting" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dispatch_active_power_is",
+      "title": {
+        "en": "Dispatch active power !{{is|isn't}} greater than [[power]] W",
+        "nl": "Dispatch actief vermogen !{{is|is niet}} groter dan [[power]] W"
+      },
+      "titleFormatted": {
+        "en": "Dispatch active power !{{is|isn't}} greater than [[power]] W",
+        "nl": "Dispatch actief vermogen !{{is|is niet}} groter dan [[power]] W"
+      },
+      "args": [
+        {
+          "type": "range",
+          "name": "power",
+          "min": -32000,
+          "max": 32000,
+          "step": 100,
+          "label": "W",
+          "labelDecimals": 0
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "set_dispatch_enabled",
+      "title": {
+        "en": "Set dispatch mode enabled",
+        "nl": "Dispatchmodus inschakelen"
+      },
+      "titleFormatted": {
+        "en": "Set dispatch [[enabled]]",
+        "nl": "Stel dispatch in op [[enabled]]"
+      },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "enabled",
+          "values": [
+            { "id": "true", "label": { "en": "Enabled", "nl": "Ingeschakeld" } },
+            { "id": "false", "label": { "en": "Disabled", "nl": "Uitgeschakeld" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "set_dispatch_mode",
+      "title": {
+        "en": "Set dispatch mode",
+        "nl": "Dispatchmodus instellen"
+      },
+      "titleFormatted": {
+        "en": "Set dispatch mode to [[mode]]",
+        "nl": "Stel dispatchmodus in op [[mode]]"
+      },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "mode",
+          "values": [
+            { "id": "1", "label": { "en": "Battery only charges from PV" } },
+            { "id": "2", "label": { "en": "SOC control" } },
+            { "id": "3", "label": { "en": "Load following" } },
+            { "id": "4", "label": { "en": "Maximise output" } },
+            { "id": "5", "label": { "en": "Normal mode" } },
+            { "id": "6", "label": { "en": "Optimise consumption" } },
+            { "id": "7", "label": { "en": "Maximise consumption" } },
+            { "id": "8", "label": { "en": "Eco mode" } },
+            { "id": "9", "label": { "en": "FCAS mode" } },
+            { "id": "10", "label": { "en": "PV power setting" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "set_dispatch_soc",
+      "title": {
+        "en": "Set dispatch target SOC",
+        "nl": "Stel dispatch-doel-SOC in"
+      },
+      "titleFormatted": {
+        "en": "Set dispatch target SOC to [[soc]]%",
+        "nl": "Stel dispatch-doel-SOC in op [[soc]]%"
+      },
+      "args": [
+        {
+          "type": "range",
+          "name": "soc",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "label": "%",
+          "labelDecimals": 0
+        }
+      ]
+    },
+    {
+      "id": "set_dispatch_active_power",
+      "title": {
+        "en": "Set dispatch active power",
+        "nl": "Stel dispatch actief vermogen in"
+      },
+      "titleFormatted": {
+        "en": "Set dispatch active power to [[power]] W",
+        "nl": "Stel dispatch actief vermogen in op [[power]] W"
+      },
+      "args": [
+        {
+          "type": "range",
+          "name": "power",
+          "min": -32000,
+          "max": 32000,
+          "step": 100,
+          "label": "W",
+          "labelDecimals": 0
+        }
+      ]
+    }
+  ]
+}

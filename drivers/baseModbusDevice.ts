@@ -45,6 +45,10 @@ async function destroyInstance(name: string) {
   }
 }
 
+export function getExistingEmitter(name: string): ModbusEventEmitter | undefined {
+  return EMITTERS[name]?.instance;
+}
+
 export default class ModbusBaseDevice extends Device {
 
   emitter?: ModbusEventEmitter;
@@ -112,8 +116,9 @@ export default class ModbusBaseDevice extends Device {
     this.emitter.on('error', this.errorEmitter);
     this.emitter.on('data', this.dataEmitter);
 
-    // this is done multiple times
-    this.emitter.start(interval * 1000);
+    if (!this.emitter.isPolling()) {
+      this.emitter.start(interval * 1000);
+    }
   }
 
   // eslint-disable-next-line no-empty-function

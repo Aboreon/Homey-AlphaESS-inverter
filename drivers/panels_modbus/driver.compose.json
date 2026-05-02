@@ -15,6 +15,7 @@
   },
   "class": "solarpanel",
   "capabilities": [
+    "onoff",
     "measure_power",
     "measure_power.ppv1",
     "measure_power.ppv2",

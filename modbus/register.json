@@ -463,5 +463,131 @@
     "len": 2,
     "factor": 0.1,
     "frontend_type": "value"
+  },
+  {
+    "register": "0x880",
+    "name_en": "Dispatch start",
+    "unit": "",
+    "type": "uint16be",
+    "len": 1,
+    "factor": 1,
+    "frontend_type": "enum",
+    "rw": true,
+    "enum": [
+      {
+        "value": 0,
+        "name_en": "Stop"
+      },
+      {
+        "value": 1,
+        "name_en": "Start"
+      }
+    ]
+  },
+  {
+    "register": "0x881",
+    "name_en": "Dispatch Active Power",
+    "unit": "W",
+    "type": "int32be",
+    "len": 2,
+    "factor": 1,
+    "frontend_type": "value",
+    "rw": true
+  },    
+  {
+    "register": "0x885",
+    "name_en": "Dispatch mode",
+    "unit": "",
+    "type": "uint16be",
+    "len": 1,
+    "factor": 1,
+    "frontend_type": "enum",
+    "rw": true,
+    "enum": [
+      {
+        "value": 1,
+        "name_en": "Battery only charges from PV"
+      },
+      {
+        "value": 2,
+        "name_en": "SOC control"
+      },
+      {
+        "value": 3,
+        "name_en": "Load following"
+      },
+      {
+        "value": 4,
+        "name_en": "Maximise output"
+      },
+      {
+        "value": 5,
+        "name_en": "Normal mode"
+      },
+      {
+        "value": 6,
+        "name_en": "Optimise consumption"
+      },
+      {
+        "value": 7,
+        "name_en": "Maximise consumption"
+      },
+      {
+        "value": 8,
+        "name_en": "Eco mode"
+      },
+      {
+        "value": 9,
+        "name_en": "FCAS mode"
+      },
+      {
+        "value": 10,
+        "name_en": "PV power setting"
+      }
+    ]
+  },
+  {
+    "register": "0x886",
+    "name_en": "Dispatch SOC",
+    "unit": "%",
+    "type": "uint16be",
+    "len": 1,
+    "factor": 0.4,
+    "frontend_type": "value",
+    "rw": true
+  },
+  {
+    "register": "0x881",
+    "name_en": "Dispatch Active Power",
+    "unit": "W",
+    "type": "int32be",
+    "len": 2,
+    "factor": 1,
+    "frontend_type": "value",
+    "rw": true
+  },
+  {
+    "register": "0x88A",
+    "name_en": "PV on/off",
+    "unit": "",
+    "type": "uint16be",
+    "len": 1,
+    "factor": 1,
+    "frontend_type": "enum",
+    "rw": true,
+    "enum": [
+      {
+        "value": 0,
+        "name_en": "On"
+      },
+      {
+        "value": 1,
+        "name_en": "On"
+      },
+      {
+        "value": 2,
+        "name_en": "Off"
+      }
+    ]
   }
 ]

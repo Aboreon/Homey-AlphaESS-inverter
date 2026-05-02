@@ -1,0 +1,26 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Dispatch target SOC",
+    "nl": "Dispatch-doel-SOC",
+    "da": "Dispatch-mål SOC",
+    "de": "Dispatch-Ziel-SOC",
+    "es": "SOC objetivo de despacho",
+    "fr": "SOC cible dispatch",
+    "it": "SOC obiettivo dispatch",
+    "no": "Dispatch-mål SOC",
+    "sv": "Dispatch-mål SOC",
+    "pl": "Docelowy SOC dispatch",
+    "ru": "Целевой SOC диспетчеризации",
+    "ko": "디스패치 목표 SOC"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "sensor",
+  "icon": "/assets/icons/spark.svg",
+  "units": { "en": "%" },
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "decimals": 0
+}

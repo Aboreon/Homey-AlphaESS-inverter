@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "nl.aboreaon.alpaess",
-  "version": "1.0.0",
+  "version": "2.0.5",
   "compatibility": ">=12.4.5",
   "sdk": 3,
   "platforms": [
@@ -773,6 +773,182 @@
         ]
       },
       {
+        "id": "set_dispatch_enabled",
+        "title": {
+          "en": "Set dispatch mode enabled",
+          "nl": "Dispatchmodus inschakelen"
+        },
+        "titleFormatted": {
+          "en": "Set dispatch [[enabled]]",
+          "nl": "Stel dispatch in op [[enabled]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery_modbus"
+          },
+          {
+            "type": "dropdown",
+            "name": "enabled",
+            "values": [
+              {
+                "id": "true",
+                "label": {
+                  "en": "Enabled",
+                  "nl": "Ingeschakeld"
+                }
+              },
+              {
+                "id": "false",
+                "label": {
+                  "en": "Disabled",
+                  "nl": "Uitgeschakeld"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_dispatch_mode",
+        "title": {
+          "en": "Set dispatch mode",
+          "nl": "Dispatchmodus instellen"
+        },
+        "titleFormatted": {
+          "en": "Set dispatch mode to [[mode]]",
+          "nl": "Stel dispatchmodus in op [[mode]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery_modbus"
+          },
+          {
+            "type": "dropdown",
+            "name": "mode",
+            "values": [
+              {
+                "id": "1",
+                "label": {
+                  "en": "Battery only charges from PV"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "SOC control"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Load following"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Maximise output"
+                }
+              },
+              {
+                "id": "5",
+                "label": {
+                  "en": "Normal mode"
+                }
+              },
+              {
+                "id": "6",
+                "label": {
+                  "en": "Optimise consumption"
+                }
+              },
+              {
+                "id": "7",
+                "label": {
+                  "en": "Maximise consumption"
+                }
+              },
+              {
+                "id": "8",
+                "label": {
+                  "en": "Eco mode"
+                }
+              },
+              {
+                "id": "9",
+                "label": {
+                  "en": "FCAS mode"
+                }
+              },
+              {
+                "id": "10",
+                "label": {
+                  "en": "PV power setting"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_dispatch_soc",
+        "title": {
+          "en": "Set dispatch target SOC",
+          "nl": "Stel dispatch-doel-SOC in"
+        },
+        "titleFormatted": {
+          "en": "Set dispatch target SOC to [[soc]]%",
+          "nl": "Stel dispatch-doel-SOC in op [[soc]]%"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery_modbus"
+          },
+          {
+            "type": "range",
+            "name": "soc",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": "%",
+            "labelDecimals": 0
+          }
+        ]
+      },
+      {
+        "id": "set_dispatch_active_power",
+        "title": {
+          "en": "Set dispatch active power",
+          "nl": "Stel dispatch actief vermogen in"
+        },
+        "titleFormatted": {
+          "en": "Set dispatch active power to [[power]] W",
+          "nl": "Stel dispatch actief vermogen in op [[power]] W"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery_modbus"
+          },
+          {
+            "type": "range",
+            "name": "power",
+            "min": -32000,
+            "max": 32000,
+            "step": 100,
+            "label": "W",
+            "labelDecimals": 0
+          }
+        ]
+      },
+      {
         "id": "set-current",
         "title": {
           "en": "Set Household Current",
@@ -816,9 +992,139 @@
             "step": 1
           }
         ]
+      },
+      {
+        "id": "set_panels_onoff",
+        "title": {
+          "en": "Turn solar panels on or off",
+          "nl": "Zet zonnepanelen aan of uit"
+        },
+        "titleFormatted": {
+          "en": "Turn solar panels [[onoff]]",
+          "nl": "Zet zonnepanelen [[onoff]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=panels_modbus"
+          },
+          {
+            "type": "dropdown",
+            "name": "onoff",
+            "values": [
+              {
+                "id": "true",
+                "label": {
+                  "en": "On",
+                  "nl": "Aan"
+                }
+              },
+              {
+                "id": "false",
+                "label": {
+                  "en": "Off",
+                  "nl": "Uit"
+                }
+              }
+            ]
+          }
+        ]
       }
     ],
     "triggers": [
+      {
+        "id": "dispatch_enabled_changed",
+        "title": {
+          "en": "Dispatch mode enabled changed",
+          "nl": "Dispatchmodus ingeschakeld gewijzigd"
+        },
+        "tokens": [
+          {
+            "name": "dispatch_enabled",
+            "type": "boolean",
+            "title": {
+              "en": "Enabled"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery_modbus"
+          }
+        ]
+      },
+      {
+        "id": "dispatch_mode_changed",
+        "title": {
+          "en": "Dispatch mode changed",
+          "nl": "Dispatchmodus gewijzigd"
+        },
+        "tokens": [
+          {
+            "name": "dispatch_mode",
+            "type": "string",
+            "title": {
+              "en": "Mode"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery_modbus"
+          }
+        ]
+      },
+      {
+        "id": "dispatch_soc_changed",
+        "title": {
+          "en": "Dispatch target SOC changed",
+          "nl": "Dispatch-doel-SOC gewijzigd"
+        },
+        "tokens": [
+          {
+            "name": "dispatch_soc",
+            "type": "number",
+            "title": {
+              "en": "SOC"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery_modbus"
+          }
+        ]
+      },
+      {
+        "id": "dispatch_active_power_changed",
+        "title": {
+          "en": "Dispatch active power changed",
+          "nl": "Dispatch actief vermogen gewijzigd"
+        },
+        "tokens": [
+          {
+            "name": "dispatch_active_power",
+            "type": "number",
+            "title": {
+              "en": "Power (W)"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery_modbus"
+          }
+        ]
+      },
       {
         "id": "alpha_state_changed",
         "title": {
@@ -874,6 +1180,179 @@
             "type": "device",
             "name": "device",
             "filter": "driver_id=grid_modbus"
+          }
+        ]
+      },
+      {
+        "id": "panels_onoff_changed",
+        "title": {
+          "en": "Solar panels turned on or off",
+          "nl": "Zonnepanelen aan- of uitgezet"
+        },
+        "tokens": [
+          {
+            "name": "onoff",
+            "type": "boolean",
+            "title": {
+              "en": "On",
+              "nl": "Aan"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=panels_modbus"
+          }
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "dispatch_enabled_is",
+        "title": {
+          "en": "Dispatch !{{is|isn't}} enabled",
+          "nl": "Dispatch !{{is|is niet}} ingeschakeld"
+        },
+        "titleFormatted": {
+          "en": "Dispatch !{{is|isn't}} enabled",
+          "nl": "Dispatch !{{is|is niet}} ingeschakeld"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery_modbus"
+          }
+        ]
+      },
+      {
+        "id": "dispatch_mode_is",
+        "title": {
+          "en": "Dispatch mode !{{is|isn't}} [[mode]]",
+          "nl": "Dispatchmodus !{{is|is niet}} [[mode]]"
+        },
+        "titleFormatted": {
+          "en": "Dispatch mode !{{is|isn't}} [[mode]]",
+          "nl": "Dispatchmodus !{{is|is niet}} [[mode]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery_modbus"
+          },
+          {
+            "type": "dropdown",
+            "name": "mode",
+            "values": [
+              {
+                "id": "1",
+                "label": {
+                  "en": "Battery only charges from PV"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "SOC control"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Load following"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Maximise output"
+                }
+              },
+              {
+                "id": "5",
+                "label": {
+                  "en": "Normal mode"
+                }
+              },
+              {
+                "id": "6",
+                "label": {
+                  "en": "Optimise consumption"
+                }
+              },
+              {
+                "id": "7",
+                "label": {
+                  "en": "Maximise consumption"
+                }
+              },
+              {
+                "id": "8",
+                "label": {
+                  "en": "Eco mode"
+                }
+              },
+              {
+                "id": "9",
+                "label": {
+                  "en": "FCAS mode"
+                }
+              },
+              {
+                "id": "10",
+                "label": {
+                  "en": "PV power setting"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "dispatch_active_power_is",
+        "title": {
+          "en": "Dispatch active power !{{is|isn't}} greater than [[power]] W",
+          "nl": "Dispatch actief vermogen !{{is|is niet}} groter dan [[power]] W"
+        },
+        "titleFormatted": {
+          "en": "Dispatch active power !{{is|isn't}} greater than [[power]] W",
+          "nl": "Dispatch actief vermogen !{{is|is niet}} groter dan [[power]] W"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery_modbus"
+          },
+          {
+            "type": "range",
+            "name": "power",
+            "min": -32000,
+            "max": 32000,
+            "step": 100,
+            "label": "W",
+            "labelDecimals": 0
+          }
+        ]
+      },
+      {
+        "id": "panels_is_on",
+        "title": {
+          "en": "Solar panels !{{are|aren't}} on",
+          "nl": "Zonnepanelen !{{zijn|zijn niet}} aan"
+        },
+        "titleFormatted": {
+          "en": "Solar panels !{{are|aren't}} on",
+          "nl": "Zonnepanelen !{{zijn|zijn niet}} aan"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=panels_modbus"
           }
         ]
       }
@@ -1024,7 +1503,11 @@
         "meter_power.charged",
         "meter_power.discharged",
         "meter_power.grid",
-        "battery_charging_state"
+        "battery_charging_state",
+        "dispatch_enabled",
+        "dispatch_mode",
+        "dispatch_soc",
+        "dispatch_active_power"
       ],
       "capabilitiesOptions": {
         "alpha_fault_text.warning": {
@@ -2198,6 +2681,7 @@
       },
       "class": "solarpanel",
       "capabilities": [
+        "onoff",
         "measure_power",
         "measure_power.ppv1",
         "measure_power.ppv2",
@@ -2599,6 +3083,166 @@
         }
       ],
       "icon": "/assets/icons/mode.svg"
+    },
+    "dispatch_active_power": {
+      "type": "number",
+      "title": {
+        "en": "Dispatch Active Power",
+        "nl": "Dispatch actief vermogen",
+        "da": "Dispatch aktiv effekt",
+        "de": "Dispatch Wirkleistung",
+        "es": "Potencia activa de despacho",
+        "fr": "Puissance active dispatch",
+        "it": "Potenza attiva dispatch",
+        "no": "Dispatch aktiv effekt",
+        "sv": "Dispatch aktiv effekt",
+        "pl": "Moc czynna dispatch",
+        "ru": "Активная мощность диспетчеризации",
+        "ko": "디스패치 유효 전력"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/spark.svg",
+      "units": {
+        "en": "W"
+      },
+      "min": -32000,
+      "max": 32000,
+      "step": 1,
+      "decimals": 0
+    },
+    "dispatch_enabled": {
+      "type": "boolean",
+      "title": {
+        "en": "Dispatch mode enabled",
+        "nl": "Dispatchmodus ingeschakeld",
+        "da": "Dispatch-tilstand aktiveret",
+        "de": "Dispatch-Modus aktiviert",
+        "es": "Modo de despacho habilitado",
+        "fr": "Mode dispatch activé",
+        "it": "Modalità dispatch attivata",
+        "no": "Dispatch-modus aktivert",
+        "sv": "Dispatch-läge aktiverat",
+        "pl": "Tryb dispatch włączony",
+        "ru": "Режим диспетчеризации включен",
+        "ko": "디스패치 모드 활성화"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/mode.svg"
+    },
+    "dispatch_mode": {
+      "type": "enum",
+      "title": {
+        "en": "Dispatch mode",
+        "nl": "Dispatchmodus",
+        "da": "Dispatch-tilstand",
+        "de": "Dispatch-Modus",
+        "es": "Modo de despacho",
+        "fr": "Mode dispatch",
+        "it": "Modalità dispatch",
+        "no": "Dispatch-modus",
+        "sv": "Dispatch-läge",
+        "pl": "Tryb dispatch",
+        "ru": "Режим диспетчеризации",
+        "ko": "디스패치 모드"
+      },
+      "getable": true,
+      "setable": true,
+      "icon": "/assets/icons/mode.svg",
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "1",
+          "title": {
+            "en": "Battery only charges from PV"
+          }
+        },
+        {
+          "id": "2",
+          "title": {
+            "en": "SOC control"
+          }
+        },
+        {
+          "id": "3",
+          "title": {
+            "en": "Load following"
+          }
+        },
+        {
+          "id": "4",
+          "title": {
+            "en": "Maximise output"
+          }
+        },
+        {
+          "id": "5",
+          "title": {
+            "en": "Normal mode"
+          }
+        },
+        {
+          "id": "6",
+          "title": {
+            "en": "Optimise consumption"
+          }
+        },
+        {
+          "id": "7",
+          "title": {
+            "en": "Maximise consumption"
+          }
+        },
+        {
+          "id": "8",
+          "title": {
+            "en": "Eco mode"
+          }
+        },
+        {
+          "id": "9",
+          "title": {
+            "en": "FCAS mode"
+          }
+        },
+        {
+          "id": "10",
+          "title": {
+            "en": "PV power setting"
+          }
+        }
+      ]
+    },
+    "dispatch_soc": {
+      "type": "number",
+      "title": {
+        "en": "Dispatch target SOC",
+        "nl": "Dispatch-doel-SOC",
+        "da": "Dispatch-mål SOC",
+        "de": "Dispatch-Ziel-SOC",
+        "es": "SOC objetivo de despacho",
+        "fr": "SOC cible dispatch",
+        "it": "SOC obiettivo dispatch",
+        "no": "Dispatch-mål SOC",
+        "sv": "Dispatch-mål SOC",
+        "pl": "Docelowy SOC dispatch",
+        "ru": "Целевой SOC диспетчеризации",
+        "ko": "디스패치 목표 SOC"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/spark.svg",
+      "units": {
+        "en": "%"
+      },
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "decimals": 0
     }
   }
 }

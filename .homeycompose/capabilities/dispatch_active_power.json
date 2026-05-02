@@ -1,0 +1,26 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Dispatch Active Power",
+    "nl": "Dispatch actief vermogen",
+    "da": "Dispatch aktiv effekt",
+    "de": "Dispatch Wirkleistung",
+    "es": "Potencia activa de despacho",
+    "fr": "Puissance active dispatch",
+    "it": "Potenza attiva dispatch",
+    "no": "Dispatch aktiv effekt",
+    "sv": "Dispatch aktiv effekt",
+    "pl": "Moc czynna dispatch",
+    "ru": "Активная мощность диспетчеризации",
+    "ko": "디스패치 유효 전력"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "sensor",
+  "icon": "/assets/icons/spark.svg",
+  "units": { "en": "W" },
+  "min": -32000,
+  "max": 32000,
+  "step": 1,
+  "decimals": 0
+}

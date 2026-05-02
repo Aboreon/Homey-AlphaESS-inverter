@@ -1,0 +1,21 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Dispatch mode enabled",
+    "nl": "Dispatchmodus ingeschakeld",
+    "da": "Dispatch-tilstand aktiveret",
+    "de": "Dispatch-Modus aktiviert",
+    "es": "Modo de despacho habilitado",
+    "fr": "Mode dispatch activé",
+    "it": "Modalità dispatch attivata",
+    "no": "Dispatch-modus aktivert",
+    "sv": "Dispatch-läge aktiverat",
+    "pl": "Tryb dispatch włączony",
+    "ru": "Режим диспетчеризации включен",
+    "ko": "디스패치 모드 활성화"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "sensor",
+  "icon": "/assets/icons/mode.svg"  
+}

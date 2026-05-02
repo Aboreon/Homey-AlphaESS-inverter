@@ -1,0 +1,63 @@
+{
+  "type": "enum",
+  "title": {
+    "en": "Dispatch mode",
+    "nl": "Dispatchmodus",
+    "da": "Dispatch-tilstand",
+    "de": "Dispatch-Modus",
+    "es": "Modo de despacho",
+    "fr": "Mode dispatch",
+    "it": "Modalità dispatch",
+    "no": "Dispatch-modus",
+    "sv": "Dispatch-läge",
+    "pl": "Tryb dispatch",
+    "ru": "Режим диспетчеризации",
+    "ko": "디스패치 모드"
+  },
+  "getable": true,
+  "setable": true,
+  "icon": "/assets/icons/mode.svg",
+  "uiComponent": "picker",
+  "values": [
+    {
+      "id": "1",
+      "title": { "en": "Battery only charges from PV" }
+    },
+    {
+      "id": "2",
+      "title": { "en": "SOC control" }
+    },
+    {
+      "id": "3",
+      "title": { "en": "Load following" }
+    },
+    {
+      "id": "4",
+      "title": { "en": "Maximise output" }
+    },
+    {
+      "id": "5",
+      "title": { "en": "Normal mode" }
+    },
+    {
+      "id": "6",
+      "title": { "en": "Optimise consumption" }
+    },
+    {
+      "id": "7",
+      "title": { "en": "Maximise consumption" }
+    },
+    {
+      "id": "8",
+      "title": { "en": "Eco mode" }
+    },
+    {
+      "id": "9",
+      "title": { "en": "FCAS mode" }
+    },
+    {
+      "id": "10",
+      "title": { "en": "PV power setting" }
+    }
+  ]
+}
